@@ -34,6 +34,7 @@ download_rpms() {
 }
 
 start_server() {
+    print "start server..."
     cd ${RPMS_DATA}
     # python -m SimpleHTTPServer $PORT >/dev/null 2>&1
     python -m SimpleHTTPServer $PORT
@@ -48,11 +49,16 @@ updaet_repo() {
 }
 
 create_repo() {
-  if [ -f "${RPMS_DATA}/repodata/repomd.xml" ]; then
-    updaet_repo
-  else
-    init_repo
-  fi
+    print "create repo"
+    if [ -f "${RPMS_DATA}/repodata/repomd.xml" ]; then
+        updaet_repo
+    else
+        init_repo
+    fi
+}
+
+print () {
+    echo -e "\033[32m$1\033[0m"
 }
 
 print_help() {
@@ -88,7 +94,7 @@ main() {
     do
         download_rpms ${software_name}
     done
-    
+    print "download packages done!"
     create_repo
     start_server
 }

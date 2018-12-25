@@ -35,3 +35,20 @@ EOF
 yum安装wget
 
 yum install -y wget
+
+## 安装td-agent
+```bash
+docker run -d --name download-rpms -p 8080:80 \
+-v /root/rpms:/rpms/data/admin/files/repo/rhel74-x86_64 download-rpms \
+gcc \
+gcc-c++ \
+libcurl-devel \
+cups-devel \
+cups-client \
+cups-libs \
+redhat-lsb-core \
+redhat-lsb-submod-security \
+spax \
+ruby-devel \
+td-agent
+```
