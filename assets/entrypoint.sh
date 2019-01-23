@@ -8,7 +8,7 @@ prepare_td_target(){
   cat >/etc/yum.repos.d/td.repo <<'EOF';
 [treasuredata]
 name=TreasureData
-baseurl=http://packages.treasuredata.com/2/redhat/7/\$basearch
+baseurl=http://packages.treasuredata.com/3/redhat/\$releasever/\$basearch
 gpgcheck=1
 gpgkey=https://packages.treasuredata.com/GPG-KEY-td-agent
 EOF
@@ -26,6 +26,7 @@ check_prepare(){
 
 download_rpms() {
     software_name=$1
+    print "download ${software_name}"
     
     check_prepare ${software_name}
 
